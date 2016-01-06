@@ -85,12 +85,14 @@ strip_invalid_archs() {
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "Pods-CocoaMarkdownTests-iOS/Ono.framework"
+  install_framework "Pods-CocoaMarkdownTests-iOS/SDWebImage.framework"
   install_framework "Pods-CocoaMarkdownTests-iOS/cmark.framework"
   install_framework "Pods-CocoaMarkdownTests-iOS/Nimble.framework"
   install_framework "Pods-CocoaMarkdownTests-iOS/Quick.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "Pods-CocoaMarkdownTests-iOS/Ono.framework"
+  install_framework "Pods-CocoaMarkdownTests-iOS/SDWebImage.framework"
   install_framework "Pods-CocoaMarkdownTests-iOS/cmark.framework"
   install_framework "Pods-CocoaMarkdownTests-iOS/Nimble.framework"
   install_framework "Pods-CocoaMarkdownTests-iOS/Quick.framework"
