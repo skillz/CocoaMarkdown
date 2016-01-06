@@ -8,9 +8,11 @@
 
 #import <Foundation/Foundation.h>
 
+@class UITextView;
 @class CMDocument;
 @class CMTextAttributes;
 @protocol CMHTMLElementTransformer;
+
 /**
  *  Renders an attributed string from a Markdown document
  */
@@ -43,5 +45,13 @@
  *  styled using the attributes set on the receiver.
  */
 - (NSAttributedString *)render;
+
+
+/**
+ * Renders an attributed string from initialized Markdown document and keeps it with sync in the @c UITextView.
+ *
+ * This method aims to support asynchronous data loading which may be included in Markdown document, i.e. images linked by URL.
+ */
+- (void)renderAndSyncWithTextView:(UITextView*)textView;
 
 @end

@@ -12,15 +12,19 @@ import CocoaMarkdown
 class ViewController: UIViewController {
     @IBOutlet var textView: UITextView!
 
+    var renderer: CMAttributedStringRenderer?
     override func viewDidLoad() {
         super.viewDidLoad()
         let path = NSBundle.mainBundle().pathForResource("test", ofType: "md")!
-        let document = CMDocument(contentsOfFile: path, options: .Normalize)
-        let renderer = CMAttributedStringRenderer(document: document, attributes: CMTextAttributes())
-        renderer.registerHTMLElementTransformer(CMHTMLStrikethroughTransformer())
-        renderer.registerHTMLElementTransformer(CMHTMLSuperscriptTransformer())
-        renderer.registerHTMLElementTransformer(CMHTMLUnderlineTransformer())
-        textView.attributedText = renderer.render()
+        let document = CMDocument(contentsOfFile: path, options: .Sourcepos)
+        renderer = CMAttributedStringRenderer(document: document, attributes: CMTextAttributes())
+        renderer!.registerHTMLElementTransformer(CMHTMLStrikethroughTransformer())
+        renderer!.registerHTMLElementTransformer(CMHTMLSuperscriptTransformer())
+        renderer!.registerHTMLElementTransformer(CMHTMLUnderlineTransformer())
+        renderer!.renderAndSyncWithTextView(textView)
+        textView.editable = false
+        textView.selectable = false
+
     }
 }
 
