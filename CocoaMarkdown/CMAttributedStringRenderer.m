@@ -18,6 +18,7 @@
 #import "CMParser.h"
 #import "CMImageAttachmentManager.h"
 #import "Ono.h"
+#import "CMTextAttachment.h"
 #import <UIKit/UIKit.h>
 
 @interface CMAttributedStringRenderer () <CMParserDelegate>
@@ -33,6 +34,10 @@
 @property (nonatomic, strong) CMImageAttachmentManager *attachmentsManager;
 
 @property (nonatomic, weak) UITextView *textView;
+
+//Usually we don't want to display 'Alt' text for images in Markdown - this is ugly workaround but working
+//I block possibility to add text to buffer while we are processing Image node.
+@property (nonatomic, assign) BOOL shouldBlockText;
 
 @end
 
@@ -305,12 +310,13 @@
         return;
     }
 
-    [self appendString:@"\n"];
+    self.shouldBlockText = YES;
 
-    NSTextAttachment *attachment    = [NSTextAttachment new];
-    attachment.image                = [UIImage imageNamed:@"placeholder@2x.png"];
+    CMTextAttachment *attachment    = [CMTextAttachment new];
+    attachment.image                = [UIImage imageNamed:@"cm_fake_placeholder.png"];
     NSAttributedString *string      = [NSAttributedString attributedStringWithAttachment:attachment];
     NSRange range                   = NSMakeRange(self.buffer.mutableString.length, 1);
+
 
     [self.buffer appendAttributedString:string];
 
@@ -318,16 +324,19 @@
 
     [self.attachmentsManager addMarkdownImageToDownload: [CMMarkdownImageWrapper imageWrapperWithURL:URL title:title range:range]
                                         completionBlock:^(CMMarkdownImageWrapper * _Nonnull updatedImage) {
-                                            NSAttributedString *updatedString = [NSAttributedString attributedStringWithAttachment:updatedImage.attachment];
-                                            [weakSelf.buffer replaceCharactersInRange:updatedImage.range withAttributedString:updatedString];
-                                            weakSelf.textView.attributedText = weakSelf.buffer.copy;
-
+                                            NSMutableAttributedString *updatedString = [[NSAttributedString attributedStringWithAttachment:updatedImage.attachment] mutableCopy];
+                                            NSMutableParagraphStyle *paragraphStyle = [NSMutableParagraphStyle new];
+                                            paragraphStyle.alignment = NSTextAlignmentCenter;
+                                            [updatedString addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, updatedString.length)];
+                                            [weakSelf.textView.textStorage replaceCharactersInRange:updatedImage.range withAttributedString:updatedString];
+//                                             [weakSelf.textView.layoutManager invalidateDisplayForCharacterRange:updatedImage.range];
     }];
 
 }
 
 - (void)parser:(CMParser *)parser didEndImageWithURL:(NSURL *)URL title:(NSString *)title {
-    [self appendString:@"\n"];
+    self.shouldBlockText = NO;
+
 }
 
 #pragma mark - Private
@@ -354,6 +363,10 @@
 
 - (void)appendString:(NSString *)string
 {
+    if(self.shouldBlockText) {
+        return;
+    }
+    
     NSAttributedString *attrString = [[NSAttributedString alloc] initWithString:string attributes:self.attributeStack.cascadedAttributes];
     [self.buffer appendAttributedString:attrString];
 }

@@ -8,6 +8,7 @@
 
 #import "CMImageAttachmentManager.h"
 #import <SDWebImage/SDWebImageManager.h>
+#import "CMTextAttachment.h"
 
 @interface CMMarkdownImageWrapper()
 
@@ -49,7 +50,8 @@
 - (void)addMarkdownImageToDownload:(CMMarkdownImageWrapper*)imageWrapper
                    completionBlock:(void(^)(CMMarkdownImageWrapper* updateImage))completionBlock {
 
-    [self.attachments addObject:imageWrapper];
+    __weak typeof(self) weakSelf = self;
+
     id <SDWebImageOperation> operation = [[SDWebImageManager sharedManager]
                                           downloadImageWithURL:imageWrapper.url
                                           options:SDWebImageAvoidAutoSetImage | SDWebImageContinueInBackground
@@ -57,14 +59,16 @@
                                           completed:
                                           ^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
                                               if(finished && !error) {
-                                                  NSTextAttachment *attachment = [NSTextAttachment new];
+                                                  CMTextAttachment *attachment = [CMTextAttachment new];
                                                   attachment.image = image;
                                                   imageWrapper.attachment = attachment;
+
                                                   completionBlock(imageWrapper);
+
                                               }
                                           }];
+    [self.attachments addObject:imageWrapper];
     [self.networkQueue addObject:operation];
-
 }
 
 - (void)dealloc {
