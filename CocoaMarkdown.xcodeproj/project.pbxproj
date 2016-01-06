@@ -130,6 +130,26 @@
 		72FE7EFB1A68695100F23F46 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 72FE7EFA1A68695100F23F46 /* Images.xcassets */; };
 		72FE7EFE1A68695100F23F46 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 72FE7EFC1A68695100F23F46 /* MainMenu.xib */; };
 		72FE7F191A686ACD00F23F46 /* test.md in Resources */ = {isa = PBXBuildFile; fileRef = 72FE7F171A686AC300F23F46 /* test.md */; };
+		85DD06D11C3CE9690070FF26 /* placeholder@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 85DD06D01C3CE9690070FF26 /* placeholder@2x.png */; };
+		85DD06D21C3CE9690070FF26 /* placeholder@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 85DD06D01C3CE9690070FF26 /* placeholder@2x.png */; };
+		85DD06D31C3CE9690070FF26 /* placeholder@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 85DD06D01C3CE9690070FF26 /* placeholder@2x.png */; };
+		85DD06D41C3CE9690070FF26 /* placeholder@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 85DD06D01C3CE9690070FF26 /* placeholder@2x.png */; };
+		85DD06D61C3CF7850070FF26 /* placeholder22@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 85DD06D51C3CF7850070FF26 /* placeholder22@2x.png */; };
+		85DD06D71C3CF7850070FF26 /* placeholder22@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 85DD06D51C3CF7850070FF26 /* placeholder22@2x.png */; };
+		85DD06D81C3CF7850070FF26 /* placeholder22@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 85DD06D51C3CF7850070FF26 /* placeholder22@2x.png */; };
+		85DD06D91C3CF7850070FF26 /* placeholder22@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 85DD06D51C3CF7850070FF26 /* placeholder22@2x.png */; };
+		85DD06DC1C3D22160070FF26 /* CMImageAttachmentManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 85DD06DA1C3D22160070FF26 /* CMImageAttachmentManager.h */; };
+		85DD06DD1C3D22160070FF26 /* CMImageAttachmentManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 85DD06DA1C3D22160070FF26 /* CMImageAttachmentManager.h */; };
+		85DD06DE1C3D22160070FF26 /* CMImageAttachmentManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 85DD06DB1C3D22160070FF26 /* CMImageAttachmentManager.m */; };
+		85DD06DF1C3D22160070FF26 /* CMImageAttachmentManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 85DD06DB1C3D22160070FF26 /* CMImageAttachmentManager.m */; };
+		85DD06E31C3D3DE10070FF26 /* CMTextAttachment.h in Headers */ = {isa = PBXBuildFile; fileRef = 85DD06E11C3D3DE10070FF26 /* CMTextAttachment.h */; };
+		85DD06E41C3D3DE10070FF26 /* CMTextAttachment.h in Headers */ = {isa = PBXBuildFile; fileRef = 85DD06E11C3D3DE10070FF26 /* CMTextAttachment.h */; };
+		85DD06E51C3D3DE10070FF26 /* CMTextAttachment.m in Sources */ = {isa = PBXBuildFile; fileRef = 85DD06E21C3D3DE10070FF26 /* CMTextAttachment.m */; };
+		85DD06E61C3D3DE10070FF26 /* CMTextAttachment.m in Sources */ = {isa = PBXBuildFile; fileRef = 85DD06E21C3D3DE10070FF26 /* CMTextAttachment.m */; };
+		85DD06EA1C3D3EDA0070FF26 /* CMTextView.h in Headers */ = {isa = PBXBuildFile; fileRef = 85DD06E81C3D3EDA0070FF26 /* CMTextView.h */; };
+		85DD06EB1C3D3EDA0070FF26 /* CMTextView.h in Headers */ = {isa = PBXBuildFile; fileRef = 85DD06E81C3D3EDA0070FF26 /* CMTextView.h */; };
+		85DD06EC1C3D3EDA0070FF26 /* CMTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 85DD06E91C3D3EDA0070FF26 /* CMTextView.m */; };
+		85DD06ED1C3D3EDA0070FF26 /* CMTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 85DD06E91C3D3EDA0070FF26 /* CMTextView.m */; };
 		9855C48B3699D026448A85ED /* Pods_CocoaMarkdownTests_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 31F88399945A02E7C1817680 /* Pods_CocoaMarkdownTests_iOS.framework */; };
 		A127D46B91C15678FCA1EA4C /* Pods_CocoaMarkdown_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BC3AB4E22B4CEA3199040DC /* Pods_CocoaMarkdown_iOS.framework */; };
 		FE0B086DD687EA4684E64A09 /* Pods_CocoaMarkdown_Mac.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52CA835A27B3D095C033C99B /* Pods_CocoaMarkdown_Mac.framework */; };
@@ -275,6 +295,14 @@
 		72FE7EFA1A68695100F23F46 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		72FE7EFD1A68695100F23F46 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		72FE7F171A686AC300F23F46 /* test.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = test.md; sourceTree = "<group>"; };
+		85DD06D01C3CE9690070FF26 /* placeholder@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "placeholder@2x.png"; sourceTree = "<group>"; };
+		85DD06D51C3CF7850070FF26 /* placeholder22@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "placeholder22@2x.png"; sourceTree = "<group>"; };
+		85DD06DA1C3D22160070FF26 /* CMImageAttachmentManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMImageAttachmentManager.h; sourceTree = "<group>"; };
+		85DD06DB1C3D22160070FF26 /* CMImageAttachmentManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMImageAttachmentManager.m; sourceTree = "<group>"; };
+		85DD06E11C3D3DE10070FF26 /* CMTextAttachment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMTextAttachment.h; sourceTree = "<group>"; };
+		85DD06E21C3D3DE10070FF26 /* CMTextAttachment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMTextAttachment.m; sourceTree = "<group>"; };
+		85DD06E81C3D3EDA0070FF26 /* CMTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMTextView.h; sourceTree = "<group>"; };
+		85DD06E91C3D3EDA0070FF26 /* CMTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CMTextView.m; sourceTree = "<group>"; };
 		9BC3AB4E22B4CEA3199040DC /* Pods_CocoaMarkdown_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CocoaMarkdown_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A8BD9F439C2253769359D9FB /* Pods-CocoaMarkdown-Mac.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CocoaMarkdown-Mac.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CocoaMarkdown-Mac/Pods-CocoaMarkdown-Mac.debug.xcconfig"; sourceTree = "<group>"; };
 		E1F939D9AC7C0F64F0528968 /* Pods_CocoaMarkdownTests_Mac.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CocoaMarkdownTests_Mac.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -367,12 +395,12 @@
 				722E33DF1A68E7E4004DE919 /* CMAttributeRun.m */,
 				722E33EA1A68EADA004DE919 /* CMCascadingAttributeStack.h */,
 				722E33EB1A68EADA004DE919 /* CMCascadingAttributeStack.m */,
-				725115DE1A6970A300337419 /* CMStack.h */,
-				725115DF1A6970A300337419 /* CMStack.m */,
 				722E33E41A68E86B004DE919 /* CMTextAttributes.h */,
 				722E33E51A68E86B004DE919 /* CMTextAttributes.m */,
 				72C17A7F1A6EB75800212F17 /* CMDocument+AttributedStringAdditions.h */,
 				72C17A801A6EB75800212F17 /* CMDocument+AttributedStringAdditions.m */,
+				85DD06DA1C3D22160070FF26 /* CMImageAttachmentManager.h */,
+				85DD06DB1C3D22160070FF26 /* CMImageAttachmentManager.m */,
 			);
 			name = "Attributed Strings";
 			sourceTree = "<group>";
@@ -429,6 +457,8 @@
 		729F53DC1A68641400CC7448 /* CocoaMarkdown */ = {
 			isa = PBXGroup;
 			children = (
+				85DD06E71C3D3ECE0070FF26 /* UI */,
+				85DD06E01C3D3DC30070FF26 /* Data */,
 				729F53DF1A68641400CC7448 /* CocoaMarkdown.h */,
 				729F541F1A6864F400CC7448 /* CMPlatformDefines.h */,
 				72C17A8F1A6EB9AB00212F17 /* CommonMark */,
@@ -443,6 +473,8 @@
 		729F53DD1A68641400CC7448 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				85DD06D51C3CF7850070FF26 /* placeholder22@2x.png */,
+				85DD06D01C3CE9690070FF26 /* placeholder@2x.png */,
 				729F53DE1A68641400CC7448 /* Info.plist */,
 			);
 			name = "Supporting Files";
@@ -560,6 +592,26 @@
 			path = CocoaMarkdownTests/Resources;
 			sourceTree = SOURCE_ROOT;
 		};
+		85DD06E01C3D3DC30070FF26 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				725115DE1A6970A300337419 /* CMStack.h */,
+				725115DF1A6970A300337419 /* CMStack.m */,
+				85DD06E11C3D3DE10070FF26 /* CMTextAttachment.h */,
+				85DD06E21C3D3DE10070FF26 /* CMTextAttachment.m */,
+			);
+			name = Data;
+			sourceTree = "<group>";
+		};
+		85DD06E71C3D3ECE0070FF26 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				85DD06E81C3D3EDA0070FF26 /* CMTextView.h */,
+				85DD06E91C3D3EDA0070FF26 /* CMTextView.m */,
+			);
+			name = UI;
+			sourceTree = "<group>";
+		};
 		CCA96F30AFD7DAAE53E05BE1 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -594,6 +646,7 @@
 				72772BFB1A6A2B5C0059936C /* CMHTMLSubscriptTransformer.h in Headers */,
 				72772BEC1A6A22720059936C /* CMHTMLSuperscriptTransformer.h in Headers */,
 				729F542A1A6864F400CC7448 /* CMIterator.h in Headers */,
+				85DD06E31C3D3DE10070FF26 /* CMTextAttachment.h in Headers */,
 				729F54261A6864F400CC7448 /* CMDocument.h in Headers */,
 				728FA12F1AEED87900C7A368 /* CMDocument_Private.h in Headers */,
 				725115F51A6972AE00337419 /* CMHTMLElementTransformer.h in Headers */,
@@ -602,10 +655,12 @@
 				72772BD61A699ACB0059936C /* CMHTMLUtilities.h in Headers */,
 				725116091A69760A00337419 /* CMHTMLElement.h in Headers */,
 				72C17A931A6EBA3300212F17 /* CMHTMLRenderer.h in Headers */,
+				85DD06DC1C3D22160070FF26 /* CMImageAttachmentManager.h in Headers */,
 				722E33EC1A68EADA004DE919 /* CMCascadingAttributeStack.h in Headers */,
 				729F54381A6864F400CC7448 /* CMPlatformDefines.h in Headers */,
 				729F53E01A68641400CC7448 /* CocoaMarkdown.h in Headers */,
 				729F542E1A6864F400CC7448 /* CMNode_Private.h in Headers */,
+				85DD06EA1C3D3EDA0070FF26 /* CMTextView.h in Headers */,
 				72C17A811A6EB75800212F17 /* CMDocument+AttributedStringAdditions.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -626,6 +681,7 @@
 				729F54311A6864F400CC7448 /* CMNode.h in Headers */,
 				7251160A1A69760A00337419 /* CMHTMLElement.h in Headers */,
 				72772BFC1A6A2B5C0059936C /* CMHTMLSubscriptTransformer.h in Headers */,
+				85DD06E41C3D3DE10070FF26 /* CMTextAttachment.h in Headers */,
 				72C17A941A6EBA3300212F17 /* CMHTMLRenderer.h in Headers */,
 				72772BD71A699ACB0059936C /* CMHTMLUtilities.h in Headers */,
 				728FA1301AEED87900C7A368 /* CMDocument_Private.h in Headers */,
@@ -634,10 +690,12 @@
 				72772BF31A6A28A70059936C /* CMHTMLScriptTransformer.h in Headers */,
 				72736B671A7B467E0046B957 /* CocoaMarkdown.h in Headers */,
 				72C17A9A1A6EBD7800212F17 /* CMDocument+HTMLAdditions.h in Headers */,
+				85DD06DD1C3D22160070FF26 /* CMImageAttachmentManager.h in Headers */,
 				72772BED1A6A22720059936C /* CMHTMLSuperscriptTransformer.h in Headers */,
 				72C17A821A6EB75800212F17 /* CMDocument+AttributedStringAdditions.h in Headers */,
 				722E33ED1A68EADA004DE919 /* CMCascadingAttributeStack.h in Headers */,
 				72772BE71A69ABB20059936C /* CMHTMLStrikethroughTransformer.h in Headers */,
+				85DD06EB1C3D3EDA0070FF26 /* CMTextView.h in Headers */,
 				729F542F1A6864F400CC7448 /* CMNode_Private.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -823,6 +881,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				85DD06D61C3CF7850070FF26 /* placeholder22@2x.png in Resources */,
+				85DD06D11C3CE9690070FF26 /* placeholder@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -838,6 +898,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				85DD06D71C3CF7850070FF26 /* placeholder22@2x.png in Resources */,
+				85DD06D21C3CE9690070FF26 /* placeholder@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -853,7 +915,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				85DD06D31C3CE9690070FF26 /* placeholder@2x.png in Resources */,
 				72FE7ED31A68692400F23F46 /* Main.storyboard in Resources */,
+				85DD06D81C3CF7850070FF26 /* placeholder22@2x.png in Resources */,
 				72FE7ED81A68692400F23F46 /* LaunchScreen.xib in Resources */,
 				72FE7ED51A68692400F23F46 /* Images.xcassets in Resources */,
 				72FE7F191A686ACD00F23F46 /* test.md in Resources */,
@@ -866,6 +930,8 @@
 			files = (
 				72FE7EFB1A68695100F23F46 /* Images.xcassets in Resources */,
 				72FE7EFE1A68695100F23F46 /* MainMenu.xib in Resources */,
+				85DD06D41C3CE9690070FF26 /* placeholder@2x.png in Resources */,
+				85DD06D91C3CF7850070FF26 /* placeholder22@2x.png in Resources */,
 				722694BC1A687B4100E1D3DC /* test.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1031,10 +1097,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				7251160B1A69760A00337419 /* CMHTMLElement.m in Sources */,
+				85DD06E51C3D3DE10070FF26 /* CMTextAttachment.m in Sources */,
 				729F542C1A6864F400CC7448 /* CMIterator.m in Sources */,
 				729F54361A6864F400CC7448 /* CMParser.m in Sources */,
 				72C17A831A6EB75800212F17 /* CMDocument+AttributedStringAdditions.m in Sources */,
 				722E33E21A68E7E4004DE919 /* CMAttributeRun.m in Sources */,
+				85DD06DE1C3D22160070FF26 /* CMImageAttachmentManager.m in Sources */,
 				72772BEE1A6A22720059936C /* CMHTMLSuperscriptTransformer.m in Sources */,
 				729F54321A6864F400CC7448 /* CMNode.m in Sources */,
 				72772BFD1A6A2B5C0059936C /* CMHTMLSubscriptTransformer.m in Sources */,
@@ -1049,6 +1117,7 @@
 				72C17A9B1A6EBD7800212F17 /* CMDocument+HTMLAdditions.m in Sources */,
 				72772BE81A69ABB20059936C /* CMHTMLStrikethroughTransformer.m in Sources */,
 				722E33EE1A68EADA004DE919 /* CMCascadingAttributeStack.m in Sources */,
+				85DD06EC1C3D3EDA0070FF26 /* CMTextView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1071,10 +1140,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				7251160C1A69760A00337419 /* CMHTMLElement.m in Sources */,
+				85DD06E61C3D3DE10070FF26 /* CMTextAttachment.m in Sources */,
 				729F542D1A6864F400CC7448 /* CMIterator.m in Sources */,
 				729F54371A6864F400CC7448 /* CMParser.m in Sources */,
 				72C17A841A6EB75800212F17 /* CMDocument+AttributedStringAdditions.m in Sources */,
 				722E33E31A68E7E4004DE919 /* CMAttributeRun.m in Sources */,
+				85DD06DF1C3D22160070FF26 /* CMImageAttachmentManager.m in Sources */,
 				72772BEF1A6A22720059936C /* CMHTMLSuperscriptTransformer.m in Sources */,
 				729F54331A6864F400CC7448 /* CMNode.m in Sources */,
 				72772BFE1A6A2B5C0059936C /* CMHTMLSubscriptTransformer.m in Sources */,
@@ -1089,6 +1160,7 @@
 				72C17A9C1A6EBD7800212F17 /* CMDocument+HTMLAdditions.m in Sources */,
 				72772BE91A69ABB20059936C /* CMHTMLStrikethroughTransformer.m in Sources */,
 				722E33EF1A68EADA004DE919 /* CMCascadingAttributeStack.m in Sources */,
+				85DD06ED1C3D3EDA0070FF26 /* CMTextView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
