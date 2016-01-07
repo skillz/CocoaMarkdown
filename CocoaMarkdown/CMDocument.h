@@ -50,6 +50,16 @@ typedef NS_OPTIONS(NSInteger, CMDocumentOptions) {
 - (instancetype)initWithData:(NSData *)data options:(CMDocumentOptions)options;
 
 /**
+ *  Initializes the receiver with @c NSString.
+ *
+ *  @param data @c NSString containing Markdown.
+ *  @param options Document options.
+ *
+ *  @return An initialized instance of the receiver.
+ */
+- (instancetype)initWithString:(NSString *)string options:(CMDocumentOptions)options;
+
+/**
  *  Initializes the receiver with data read from a file.
  *
  *  @param path The file path to read from.
