@@ -8,7 +8,7 @@
 
 #import "CMTextAttachment.h"
 
-static CGFloat CM_IMAGE_WIDTH = 1.0;
+static CGFloat CM_IMAGE_WIDTH = 0.95;
 
 @implementation CMTextAttachment
 
