@@ -18,10 +18,9 @@ Efficient NSAttributedString creation for easy rendering on iOS and OS X. Most e
   s.source_files  = "CocoaMarkdown"
 
   s.framework  = "UIKit"
-  
+
   s.dependency 'cmark'
   s.dependency 'Ono'
-    
-
+  s.dependency 'SDWebImage'
 
 end
