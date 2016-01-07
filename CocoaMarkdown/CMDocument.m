@@ -25,6 +25,18 @@
     return self;
 }
 
+- (instancetype)initWithString:(NSString *)string options:(CMDocumentOptions)options {
+    if ((self = [super init])) {
+        NSData *data = [string dataUsingEncoding:NSUTF8StringEncoding];
+        cmark_node *node = cmark_parse_document((const char *)data.bytes, data.length, options);
+        if (node == NULL) return nil;
+
+        _rootNode = [[CMNode alloc] initWithNode:node freeWhenDone:YES];
+        _options = options;
+    }
+    return self;
+}
+
 - (instancetype)initWithContentsOfFile:(NSString *)path options:(CMDocumentOptions)options
 {
     if ((self = [super init])) {
