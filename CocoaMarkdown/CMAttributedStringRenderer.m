@@ -328,8 +328,14 @@
                                             NSMutableParagraphStyle *paragraphStyle = [NSMutableParagraphStyle new];
                                             paragraphStyle.alignment = NSTextAlignmentCenter;
                                             [updatedString addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, updatedString.length)];
-                                            [weakSelf.textView.textStorage replaceCharactersInRange:updatedImage.range withAttributedString:updatedString];
-//                                             [weakSelf.textView.layoutManager invalidateDisplayForCharacterRange:updatedImage.range];
+
+                                            if(weakSelf.buffer.length >= (updatedImage.range.location + updatedImage.range.length)) {
+                                                [weakSelf.buffer replaceCharactersInRange:updatedImage.range withAttributedString:updatedString];
+                                            }
+
+                                            if(weakSelf.textView.textStorage.length >= (updatedImage.range.location + updatedImage.range.length)) {
+                                                [weakSelf.textView.textStorage replaceCharactersInRange:updatedImage.range withAttributedString:updatedString];
+                                            }
     }];
 
 }
