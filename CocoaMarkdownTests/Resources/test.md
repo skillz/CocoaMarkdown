@@ -1,7 +1,7 @@
 # Test Document
 ### Testing some basic styles
 
-![Image1](https://raw.githubusercontent.com/sonoramac/Sonora/master/screenshot.png "screenshot")
+[![X8](https://x8.io/assets/logo-big-4350e75ca39d39b8fcc91f1ab307e2fc.png "X8")](http://x8.io "X8")
 
 Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo  
 sit amet risus. Praesent co mmodo cursus magna, vel scelerisque nisl consectetur et.

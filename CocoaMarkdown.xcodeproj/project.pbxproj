@@ -134,8 +134,8 @@
 		85DD06DD1C3D22160070FF26 /* CMImageAttachmentManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 85DD06DA1C3D22160070FF26 /* CMImageAttachmentManager.h */; };
 		85DD06DE1C3D22160070FF26 /* CMImageAttachmentManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 85DD06DB1C3D22160070FF26 /* CMImageAttachmentManager.m */; };
 		85DD06DF1C3D22160070FF26 /* CMImageAttachmentManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 85DD06DB1C3D22160070FF26 /* CMImageAttachmentManager.m */; };
-		85DD06E31C3D3DE10070FF26 /* CMTextAttachment.h in Headers */ = {isa = PBXBuildFile; fileRef = 85DD06E11C3D3DE10070FF26 /* CMTextAttachment.h */; };
-		85DD06E41C3D3DE10070FF26 /* CMTextAttachment.h in Headers */ = {isa = PBXBuildFile; fileRef = 85DD06E11C3D3DE10070FF26 /* CMTextAttachment.h */; };
+		85DD06E31C3D3DE10070FF26 /* CMTextAttachment.h in Headers */ = {isa = PBXBuildFile; fileRef = 85DD06E11C3D3DE10070FF26 /* CMTextAttachment.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		85DD06E41C3D3DE10070FF26 /* CMTextAttachment.h in Headers */ = {isa = PBXBuildFile; fileRef = 85DD06E11C3D3DE10070FF26 /* CMTextAttachment.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		85DD06E51C3D3DE10070FF26 /* CMTextAttachment.m in Sources */ = {isa = PBXBuildFile; fileRef = 85DD06E21C3D3DE10070FF26 /* CMTextAttachment.m */; };
 		85DD06E61C3D3DE10070FF26 /* CMTextAttachment.m in Sources */ = {isa = PBXBuildFile; fileRef = 85DD06E21C3D3DE10070FF26 /* CMTextAttachment.m */; };
 		85DD06EF1C3D8EE10070FF26 /* cm_fake_placeholder.png in Resources */ = {isa = PBXBuildFile; fileRef = 85DD06EE1C3D8EE10070FF26 /* cm_fake_placeholder.png */; };
