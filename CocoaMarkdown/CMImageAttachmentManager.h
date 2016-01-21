@@ -10,12 +10,13 @@
 
 @interface CMMarkdownImageWrapper : NSObject
 
-@property (nonatomic, readonly, nonnull) NSURL *url;
+@property (nonatomic, readonly, nonnull) NSURL *imageURL;
+@property (nonatomic, readonly, nullable) NSURL *url;
 @property (nonatomic, readonly, nullable) NSString *title;
 @property (nonatomic, readonly) NSRange range;
 @property (nonatomic, readonly, nullable) NSTextAttachment *attachment;
 
-+ (instancetype)imageWrapperWithURL:(nonnull NSURL*)url title:(nullable NSString*)title range:(NSRange)range;
++ (instancetype)imageWrapperWithImageURL:(nonnull NSURL*)imageURL url:(nullable NSURL*)url title:(nullable NSString*)title range:(NSRange)range ;
 
 @end
 

@@ -12,7 +12,8 @@
 
 @interface CMMarkdownImageWrapper()
 
-@property (nonatomic, strong, nonnull) NSURL *url;
+@property (nonatomic, strong, nonnull) NSURL *imageURL;
+@property (nonatomic, strong, nullable) NSURL *url;
 @property (nonatomic, strong, nullable) NSString *title;
 @property (nonatomic, assign) NSRange range;
 @property (nonatomic, strong, nullable) NSTextAttachment *attachment;
@@ -21,11 +22,12 @@
 
 @implementation CMMarkdownImageWrapper
 
-+ (instancetype)imageWrapperWithURL:(nonnull NSURL*)url title:(nullable NSString*)title range:(NSRange)range {
++ (instancetype)imageWrapperWithImageURL:(nonnull NSURL*)imageURL url:(nullable NSURL*)url title:(nullable NSString*)title range:(NSRange)range {
     CMMarkdownImageWrapper *wrapper = [CMMarkdownImageWrapper new];
-    wrapper.url = url;
-    wrapper.title = title;
-    wrapper.range = range;
+    wrapper.imageURL    = imageURL;
+    wrapper.url         = url;
+    wrapper.title       = title;
+    wrapper.range       = range;
     return wrapper;
 }
 
@@ -51,15 +53,16 @@
                    completionBlock:(void(^)(CMMarkdownImageWrapper* updateImage))completionBlock {
 
     id <SDWebImageOperation> operation = [[SDWebImageManager sharedManager]
-                                          downloadImageWithURL:imageWrapper.url
+                                          downloadImageWithURL:imageWrapper.imageURL
                                           options:SDWebImageAvoidAutoSetImage | SDWebImageContinueInBackground
                                           progress:nil
                                           completed:
                                           ^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
                                               if(finished && !error) {
-                                                  CMTextAttachment *attachment = [CMTextAttachment new];
-                                                  attachment.image = image;
-                                                  imageWrapper.attachment = attachment;
+                                                  CMTextAttachment *attachment  = [CMTextAttachment new];
+                                                  attachment.image              = image;
+                                                  attachment.url                = imageWrapper.url;
+                                                  imageWrapper.attachment       = attachment;
 
                                                   completionBlock(imageWrapper);
                                               }

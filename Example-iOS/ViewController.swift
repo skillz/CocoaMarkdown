@@ -26,5 +26,13 @@ class ViewController: UIViewController, UITextViewDelegate {
         textView.selectable = true
         textView.delegate = self
     }
+
+    func textView(textView: UITextView, shouldInteractWithTextAttachment textAttachment: NSTextAttachment, inRange characterRange: NSRange) -> Bool {
+        if let textAttachment = textAttachment as? CMTextAttachment, url = textAttachment.url {
+            UIApplication.sharedApplication().openURL(url)
+            return false
+        }
+        return true
+    }
 }
 

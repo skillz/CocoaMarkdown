@@ -311,16 +311,14 @@
     NSAttributedString *string      = [NSAttributedString attributedStringWithAttachment:attachment];
     NSRange range                   = NSMakeRange(self.buffer.mutableString.length, 1);
 
-    if (parser.currentNode.parent.type == CMNodeTypeLink) {
-        [attachment setupWithURL:parser.currentNode.parent.URL];
-    }
 
     [self.buffer appendAttributedString:string];
 
     __weak typeof(self) weakSelf = self;
 
-    [self.attachmentsManager addMarkdownImageToDownload: [CMMarkdownImageWrapper imageWrapperWithURL:URL title:title range:range]
-                                        completionBlock:^(CMMarkdownImageWrapper * _Nonnull updatedImage) {
+    [self.attachmentsManager addMarkdownImageToDownload:
+     [CMMarkdownImageWrapper imageWrapperWithImageURL:URL url:parser.currentNode.parent.URL title:title range:range]
+                                        completionBlock:^(CMMarkdownImageWrapper * _Nonnull updatedImage) { 
                                             NSMutableAttributedString *updatedString = [[NSAttributedString attributedStringWithAttachment:updatedImage.attachment] mutableCopy];
                                             NSMutableParagraphStyle *paragraphStyle = [NSMutableParagraphStyle new];
                                             paragraphStyle.alignment = NSTextAlignmentCenter;
