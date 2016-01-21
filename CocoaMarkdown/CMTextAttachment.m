@@ -10,6 +10,12 @@
 
 static CGFloat CM_IMAGE_WIDTH = 0.95;
 
+@interface CMTextAttachment()
+
+@property (strong, nonatomic) NSURL *url;
+
+@end
+
 @implementation CMTextAttachment
 
 - (CGRect)attachmentBoundsForTextContainer:(NSTextContainer *)textContainer
@@ -32,6 +38,10 @@ static CGFloat CM_IMAGE_WIDTH = 0.95;
 
     CGRect rect = CGRectMake(0, 0, imageSize.width * scalingFactor, imageSize.height * scalingFactor);
     return rect;
+}
+
+- (void)setupWithURL:(NSURL*)url {
+    _url = url;
 }
 
 

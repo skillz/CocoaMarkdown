@@ -35,10 +35,6 @@
 
 @property (nonatomic, weak) UITextView *textView;
 
-//Usually we don't want to display 'Alt' text for images in Markdown - this is ugly workaround but working
-//I block possibility to add text to buffer while we are processing Image node.
-@property (nonatomic, assign) BOOL shouldBlockText;
-
 @end
 
 @implementation CMAttributedStringRenderer
@@ -116,7 +112,7 @@
     CMHTMLElement *element = [self.HTMLStack peek];
     if (element != nil) {
         [element.buffer appendString:text];
-    } else {
+    } else if (parser.currentNode.parent.type != CMNodeTypeImage) {
         [self appendString:text];
     }
 }
@@ -310,13 +306,14 @@
         return;
     }
 
-    self.shouldBlockText = YES;
-
     CMTextAttachment *attachment    = [CMTextAttachment new];
     attachment.image                = [UIImage imageNamed:@"cm_fake_placeholder.png"];
     NSAttributedString *string      = [NSAttributedString attributedStringWithAttachment:attachment];
     NSRange range                   = NSMakeRange(self.buffer.mutableString.length, 1);
 
+    if (parser.currentNode.parent.type == CMNodeTypeLink) {
+        [attachment setupWithURL:parser.currentNode.parent.URL];
+    }
 
     [self.buffer appendAttributedString:string];
 
@@ -341,7 +338,6 @@
 }
 
 - (void)parser:(CMParser *)parser didEndImageWithURL:(NSURL *)URL title:(NSString *)title {
-    self.shouldBlockText = NO;
 
 }
 
@@ -369,10 +365,6 @@
 
 - (void)appendString:(NSString *)string
 {
-    if(self.shouldBlockText) {
-        return;
-    }
-    
     NSAttributedString *attrString = [[NSAttributedString alloc] initWithString:string attributes:self.attributeStack.cascadedAttributes];
     [self.buffer appendAttributedString:attrString];
 }

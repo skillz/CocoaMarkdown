@@ -50,8 +50,6 @@
 - (void)addMarkdownImageToDownload:(CMMarkdownImageWrapper*)imageWrapper
                    completionBlock:(void(^)(CMMarkdownImageWrapper* updateImage))completionBlock {
 
-    __weak typeof(self) weakSelf = self;
-
     id <SDWebImageOperation> operation = [[SDWebImageManager sharedManager]
                                           downloadImageWithURL:imageWrapper.url
                                           options:SDWebImageAvoidAutoSetImage | SDWebImageContinueInBackground
@@ -64,7 +62,6 @@
                                                   imageWrapper.attachment = attachment;
 
                                                   completionBlock(imageWrapper);
-
                                               }
                                           }];
     [self.attachments addObject:imageWrapper];

@@ -10,4 +10,6 @@
 
 @interface CMTextAttachment : NSTextAttachment
 
+- (void)setupWithURL:(NSURL*)url;
+
 @end

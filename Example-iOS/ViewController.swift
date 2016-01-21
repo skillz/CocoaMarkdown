@@ -9,7 +9,7 @@
 import UIKit
 import CocoaMarkdown
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UITextViewDelegate {
     @IBOutlet var textView: UITextView!
 
     var renderer: CMAttributedStringRenderer?
@@ -23,8 +23,8 @@ class ViewController: UIViewController {
         renderer!.registerHTMLElementTransformer(CMHTMLUnderlineTransformer())
         renderer!.renderAndSyncWithTextView(textView)
         textView.editable = false
-        textView.selectable = false
-
+        textView.selectable = true
+        textView.delegate = self
     }
 }
 
