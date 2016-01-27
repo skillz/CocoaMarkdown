@@ -105,6 +105,7 @@
 - (void)parserDidEndDocument:(CMParser *)parser
 {
     CFStringTrimWhitespace((__bridge CFMutableStringRef)_buffer.mutableString);
+    [self.attachmentsManager markDocumentAsParsed];
 }
 
 - (void)parser:(CMParser *)parser foundText:(NSString *)text
@@ -316,7 +317,7 @@
 
     [self.attachmentsManager addMarkdownImageToDownload:
      [CMMarkdownImageWrapper imageWrapperWithImageURL:URL url:parser.currentNode.parent.URL title:title range:range]
-                                        completionBlock:^(CMMarkdownImageWrapper * _Nonnull updatedImage) {
+                                        completionBlock:^(CMMarkdownImageWrapper * _Nonnull updatedImage, BOOL isDocumentParsed) {
 
                                             NSMutableAttributedString *updatedString = [[NSAttributedString attributedStringWithAttachment:updatedImage.attachment] mutableCopy];
                                             NSMutableParagraphStyle *paragraphStyle = [NSMutableParagraphStyle new];
@@ -351,6 +352,9 @@
 
                                             if(weakSelf.textView.textStorage.length >= (updatedImage.range.location + updatedImage.range.length)) {
                                                 [weakSelf.textView.textStorage replaceCharactersInRange:correctedRange withAttributedString:updatedString];
+                                            }
+                                            if(isDocumentParsed && [weakSelf.textView.delegate respondsToSelector:@selector(textViewDidEndEditing:)]) {
+                                                [weakSelf.textView.delegate textViewDidEndEditing:weakSelf.textView];
                                             }
     }];
 

@@ -37,7 +37,7 @@
 
 @property (nonatomic, strong, nonnull) NSMutableArray<CMMarkdownImageWrapper*> *attachments;
 @property (nonatomic, strong, nonnull) NSMutableArray<id<SDWebImageOperation>> *networkQueue;
-
+@property (nonatomic, assign) BOOL documentParsed;
 @end
 
 @implementation CMImageAttachmentManager
@@ -50,7 +50,9 @@
 }
 
 - (void)addMarkdownImageToDownload:(CMMarkdownImageWrapper*)imageWrapper
-                   completionBlock:(void(^)(CMMarkdownImageWrapper* updateImage))completionBlock {
+                   completionBlock:(void(^)(CMMarkdownImageWrapper* updateImage, BOOL isDocumentParsed))completionBlock {
+
+    __weak typeof(self) weakSelf = self;
 
     id <SDWebImageOperation> operation = [[SDWebImageManager sharedManager]
                                           downloadImageWithURL:imageWrapper.imageURL
@@ -64,11 +66,22 @@
                                                   attachment.url                = imageWrapper.url;
                                                   imageWrapper.attachment       = attachment;
 
-                                                  completionBlock(imageWrapper);
+                                                  @synchronized(self) {
+                                                      [self.networkQueue removeObject:operation];
+                                                      [self.attachments removeObject:imageWrapper];
+                                                  }
+                                                  completionBlock(imageWrapper, weakSelf.documentParsed && weakSelf.networkQueue.count == 0);
                                               }
                                           }];
+    @synchronized(self) {
+
     [self.attachments addObject:imageWrapper];
     [self.networkQueue addObject:operation];
+    }
+}
+
+- (void)markDocumentAsParsed {
+    self.documentParsed = YES;
 }
 
 - (void)dealloc {

@@ -34,5 +34,9 @@ class ViewController: UIViewController, UITextViewDelegate {
         }
         return true
     }
+
+    func textViewDidEndEditing(textView: UITextView) {
+        print("DID END PARSING")
+    }
 }
 

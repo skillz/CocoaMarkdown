@@ -23,7 +23,8 @@
 @interface CMImageAttachmentManager : NSObject
 
 - (void)addMarkdownImageToDownload:(nonnull CMMarkdownImageWrapper*)imageWrapper
-                   completionBlock:(nonnull void (^) (CMMarkdownImageWrapper* _Nonnull updateImage))completionBlock;
+                   completionBlock:(void(^)(CMMarkdownImageWrapper* updateImage, BOOL isDocumentParsed))completionBlock;
+- (void)markDocumentAsParsed;
 
 
 @end
