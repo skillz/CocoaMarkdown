@@ -307,10 +307,8 @@
     }
 
     CMTextAttachment *attachment    = [CMTextAttachment new];
-    attachment.image                = [UIImage imageNamed:@"cm_fake_placeholder.png"];
     NSAttributedString *string      = [NSAttributedString attributedStringWithAttachment:attachment];
     NSRange range                   = NSMakeRange(self.buffer.mutableString.length, 1);
-
 
     [self.buffer appendAttributedString:string];
 
@@ -318,18 +316,41 @@
 
     [self.attachmentsManager addMarkdownImageToDownload:
      [CMMarkdownImageWrapper imageWrapperWithImageURL:URL url:parser.currentNode.parent.URL title:title range:range]
-                                        completionBlock:^(CMMarkdownImageWrapper * _Nonnull updatedImage) { 
+                                        completionBlock:^(CMMarkdownImageWrapper * _Nonnull updatedImage) {
+
                                             NSMutableAttributedString *updatedString = [[NSAttributedString attributedStringWithAttachment:updatedImage.attachment] mutableCopy];
                                             NSMutableParagraphStyle *paragraphStyle = [NSMutableParagraphStyle new];
                                             paragraphStyle.alignment = NSTextAlignmentCenter;
                                             [updatedString addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, updatedString.length)];
 
+                                            NSRange correctedRange = updatedImage.range;
+
+                                            //Theoretically, the range for previously attachment shouldn't change, as we are appending new text lineary.
+                                            //But in fact it's the same or differs by 1 index.
+                                            //The proper solution would be to save attachements and after layouting whole text, search for them and their proper ranges.
+                                            //But due to lack of time I implemented check for nearest neighbour and check which one is @c NSAttachment.
+
+                                            if(weakSelf.buffer.string.length > updatedImage.range.location + 1) {
+                                                NSRange searchRange = NSMakeRange(updatedImage.range.location - 1, 2);
+                                                NSAttributedString *relatedSubstring = [weakSelf.buffer attributedSubstringFromRange:searchRange];
+
+
+                                                if([[relatedSubstring attributesAtIndex:0 effectiveRange:nil] objectForKey:@"NSAttachment"] &&
+                                                   [[[relatedSubstring attributesAtIndex:0 effectiveRange:nil] objectForKey:@"NSAttachment"] isKindOfClass:[CMTextAttachment class]]) {
+                                                    correctedRange = NSMakeRange(searchRange.location, 1);
+                                                }
+                                                if([[relatedSubstring attributesAtIndex:1 effectiveRange:nil] objectForKey:@"NSAttachment"] &&
+                                                   [[[relatedSubstring attributesAtIndex:1 effectiveRange:nil] objectForKey:@"NSAttachment"] isKindOfClass:[CMTextAttachment class]]) {
+                                                    correctedRange = NSMakeRange(searchRange.location + 1, 1);
+                                                }
+                                            }
+
                                             if(weakSelf.buffer.length >= (updatedImage.range.location + updatedImage.range.length)) {
-                                                [weakSelf.buffer replaceCharactersInRange:updatedImage.range withAttributedString:updatedString];
+                                                [weakSelf.buffer replaceCharactersInRange:correctedRange withAttributedString:updatedString];
                                             }
 
                                             if(weakSelf.textView.textStorage.length >= (updatedImage.range.location + updatedImage.range.length)) {
-                                                [weakSelf.textView.textStorage replaceCharactersInRange:updatedImage.range withAttributedString:updatedString];
+                                                [weakSelf.textView.textStorage replaceCharactersInRange:correctedRange withAttributedString:updatedString];
                                             }
     }];
 
