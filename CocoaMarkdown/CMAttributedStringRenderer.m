@@ -30,7 +30,7 @@
 @property (nonatomic, strong) NSMutableDictionary *tagNameToTransformerMapping;
 @property (nonatomic, strong) NSMutableAttributedString *buffer;
 @property (nonatomic, strong) NSAttributedString *attributedString;
-
+@property (nonatomic, strong) NSArray *customURLSchemes;
 @property (nonatomic, strong) CMImageAttachmentManager *attachmentsManager;
 
 @property (nonatomic, weak) UITextView *textView;
@@ -49,6 +49,10 @@
         _tagNameToTransformerMapping = [[NSMutableDictionary alloc] init];
     }
     return self;
+}
+
+- (void)registerCustomURLSchemes:(NSArray*)schemes {
+    self.customURLSchemes = schemes;
 }
 
 - (void)registerHTMLElementTransformer:(id<CMHTMLElementTransformer>)transformer
@@ -72,13 +76,13 @@
         [self prerendering];
         CMParser *parser = [[CMParser alloc] initWithDocument:self.document delegate:self];
         [parser parse];
-        
+
         self.attributedString = [self.buffer copy];
         self.attributeStack = nil;
         self.HTMLStack = nil;
         self.buffer = nil;
     }
-    
+
     return self.attributedString;
 }
 
@@ -114,7 +118,30 @@
     if (element != nil) {
         [element.buffer appendString:text];
     } else if (parser.currentNode.parent.type != CMNodeTypeImage) {
-        [self appendString:text];
+        if (self.customURLSchemes && self.customURLSchemes.count > 0) {
+            NSDataDetector *detect = [[NSDataDetector alloc] initWithTypes:NSTextCheckingTypeLink error:nil];
+            NSArray *matches = [detect matchesInString:text options:0 range:NSMakeRange(0, text.length)];
+            matches = [matches filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(NSTextCheckingResult* match, NSDictionary<NSString *,id> * _Nullable bindings) {
+                return [self.customURLSchemes containsObject:match.URL.scheme];
+            }]];
+            if(matches.count > 0) {
+                NSString *startText = text;
+                for (NSTextCheckingResult *match in matches) {
+                    NSString *matchURLString = match.URL.absoluteString;
+                    NSArray *components = [startText componentsSeparatedByString:matchURLString];
+                    [self appendString:components[0]];
+                    [self parser:parser didStartLinkWithURL:match.URL title:matchURLString];
+                    [self appendString:match.URL.absoluteString];
+                    [self parser:parser didEndLinkWithURL:match.URL title:matchURLString];
+                    startText = components.count > 1 ? components[1] : @"";
+                }
+                [self appendString:startText];
+            } else {
+                [self appendString:text];
+            }
+        } else {
+            [self appendString:text];
+        }
     }
 }
 
@@ -163,6 +190,7 @@
 
 - (void)parser:(CMParser *)parser didStartLinkWithURL:(NSURL *)URL title:(NSString *)title
 {
+    NSLog(@"start");
     NSMutableDictionary *baseAttributes = [NSMutableDictionary dictionaryWithObjectsAndKeys:URL, NSLinkAttributeName, nil];
 #if !TARGET_OS_IPHONE
     if (title != nil) {
@@ -175,6 +203,8 @@
 
 - (void)parser:(CMParser *)parser didEndLinkWithURL:(NSURL *)URL title:(NSString *)title
 {
+    NSLog(@"end");
+
     [self.attributeStack pop];
 }
 
@@ -356,7 +386,7 @@
                                             if(isDocumentParsed && [weakSelf.textView.delegate respondsToSelector:@selector(textViewDidEndEditing:)]) {
                                                 [weakSelf.textView.delegate textViewDidEndEditing:weakSelf.textView];
                                             }
-    }];
+                                        }];
 
 }
 
@@ -400,7 +430,7 @@
         NSLog(@"Error creating HTML document for buffer \"%@\": %@", element.buffer, error);
         return;
     }
-    
+
     ONOXMLElement *XMLElement = document.rootElement[0][0];
     NSDictionary *attributes = self.attributeStack.cascadedAttributes;
     NSAttributedString *attrString = [element.transformer attributedStringForElement:XMLElement attributes:attributes];

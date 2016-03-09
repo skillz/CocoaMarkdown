@@ -29,6 +29,11 @@
 - (instancetype)initWithDocument:(CMDocument *)document attributes:(CMTextAttributes *)attributes;
 
 /**
+ * This method enables to add custom URL schemes and detect them as URL's and treat them as such
+ */
+- (void)registerCustomURLSchemes:(NSArray*)schemes;
+
+/**
  *  Registers a handler to transform HTML elements.
  *
  *  Only a single transformer can be registered for an element. If a transformer

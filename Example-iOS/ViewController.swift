@@ -18,6 +18,7 @@ class ViewController: UIViewController, UITextViewDelegate {
         let path = NSBundle.mainBundle().pathForResource("test", ofType: "md")!
         let document = CMDocument(contentsOfFile: path, options: .Sourcepos)
         renderer = CMAttributedStringRenderer(document: document, attributes: CMTextAttributes())
+        renderer!.registerCustomURLSchemes(["howdyhub"])
         renderer!.registerHTMLElementTransformer(CMHTMLStrikethroughTransformer())
         renderer!.registerHTMLElementTransformer(CMHTMLSuperscriptTransformer())
         renderer!.registerHTMLElementTransformer(CMHTMLUnderlineTransformer())
