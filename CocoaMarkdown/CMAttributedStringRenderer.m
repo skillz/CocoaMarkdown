@@ -95,7 +95,7 @@
     self.attributeStack = nil;
     self.HTMLStack = nil;
 
-    textView.attributedText = self.attributedString;
+    self.textView.attributedText = self.attributedString;
 
 }
 
@@ -109,6 +109,7 @@
 - (void)parserDidEndDocument:(CMParser *)parser
 {
     CFStringTrimWhitespace((__bridge CFMutableStringRef)_buffer.mutableString);
+    self.textView.attributedText = self.attributedString;
     [self.attachmentsManager markDocumentAsParsed];
 }
 
@@ -420,6 +421,7 @@
 {
     NSAttributedString *attrString = [[NSAttributedString alloc] initWithString:string attributes:self.attributeStack.cascadedAttributes];
     [self.buffer appendAttributedString:attrString];
+    self.textView.attributedText = self.attributedString;
 }
 
 - (void)appendHTMLElement:(CMHTMLElement *)element
