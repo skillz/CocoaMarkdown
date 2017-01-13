@@ -4,28 +4,28 @@ use_frameworks!
 
 target 'CocoaMarkdown-iOS' do
     pod 'Ono'
-    pod 'cmark'
-    pod 'SDWebImage'
+    pod 'cmark', '~> 0.21.0'
+    pod 'SDWebImage', '~> 3.7.3'
 end
 
 target 'CocoaMarkdown-Mac' do
     pod 'Ono'
-    pod 'cmark'
-    pod 'SDWebImage'
+    pod 'cmark', '~> 0.21.0'
+    pod 'SDWebImage', '~> 3.7.3'
 end
 
 target 'CocoaMarkdownTests-iOS' do
     pod 'Ono'
-    pod 'cmark'
+    pod 'cmark', '~> 0.21.0'
     pod 'Nimble'
     pod 'Quick'
-    pod 'SDWebImage'
+    pod 'SDWebImage', '~> 3.7.3'
 end
 
 target 'CocoaMarkdownTests-Mac' do
     pod 'Ono'
-    pod 'cmark'
+    pod 'cmark', '~> 0.21.0'
     pod 'Nimble'
     pod 'Quick'
-    pod 'SDWebImage'
+    pod 'SDWebImage', '~> 3.7.3'
 end
