@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 
   s.name         = "CocoaMarkdown"
-  s.version      = "0.1.1"
+  s.version      = "0.2.0"
   s.summary      = "Markdown parsing and rendering for iOS and OS X"
 
   s.description  = "CocoaMarkdown aims to solve two primary problems better than existing libraries:
