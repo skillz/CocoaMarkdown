@@ -9,18 +9,35 @@
 import UIKit
 import CocoaMarkdown
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UITextViewDelegate {
     @IBOutlet var textView: UITextView!
 
+    var renderer: CMAttributedStringRenderer?
     override func viewDidLoad() {
         super.viewDidLoad()
         let path = NSBundle.mainBundle().pathForResource("test", ofType: "md")!
         let document = CMDocument(contentsOfFile: path, options: CMDocumentOptions(rawValue: 0))
-        let renderer = CMAttributedStringRenderer(document: document, attributes: CMTextAttributes())
-        renderer.registerHTMLElementTransformer(CMHTMLStrikethroughTransformer())
-        renderer.registerHTMLElementTransformer(CMHTMLSuperscriptTransformer())
-        renderer.registerHTMLElementTransformer(CMHTMLUnderlineTransformer())
-        textView.attributedText = renderer.render()
+        renderer = CMAttributedStringRenderer(document: document, attributes: CMTextAttributes())
+        renderer!.registerCustomURLSchemes(["howdyhub"])
+        renderer!.registerHTMLElementTransformer(CMHTMLStrikethroughTransformer())
+        renderer!.registerHTMLElementTransformer(CMHTMLSuperscriptTransformer())
+        renderer!.registerHTMLElementTransformer(CMHTMLUnderlineTransformer())
+        renderer!.renderAndSyncWithTextView(textView)
+        textView.editable = false
+        textView.selectable = true
+        textView.delegate = self
+    }
+
+    func textView(textView: UITextView, shouldInteractWithTextAttachment textAttachment: NSTextAttachment, inRange characterRange: NSRange) -> Bool {
+        if let textAttachment = textAttachment as? CMTextAttachment, url = textAttachment.url {
+            UIApplication.sharedApplication().openURL(url)
+            return false
+        }
+        return true
+    }
+
+    func textViewDidEndEditing(textView: UITextView) {
+        print("DID END PARSING")
     }
 }
 
